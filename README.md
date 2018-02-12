@@ -1,4 +1,4 @@
-## Instructions
+## Ansible HA proxy
 
 This project contains:
 
