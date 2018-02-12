@@ -1,0 +1,34 @@
+---
+# tasks file for haproxy
+- name: Ensure HAProxy is installed (Debian).
+  apt:
+    name: haproxy
+    state: installed
+
+- name: Enable UDP syslog
+  blockinfile:
+    path: /etc/rsyslog.conf
+    block: |
+      $ModLoad imudp
+      $UDPServerRun 514
+
+- name: configure HAproxy logs
+  template:
+    src: haproxylogs.conf
+    dest: /etc/rsyslog.d/haproxy.conf
+
+- name: Restart rsyslog
+  service:
+    name: syslog
+    state: restarted
+
+- name: Copy Haproxy configuration
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+
+- name: Restart HAProxy
+  service:
+    name: haproxy
+    state: restarted
+    enabled: yes

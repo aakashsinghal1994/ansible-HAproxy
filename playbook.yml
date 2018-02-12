@@ -1,0 +1,10 @@
+---
+- hosts: backend*
+  become: yes
+  roles:
+    - nginx
+
+- hosts: frontend
+  become: yes
+  roles:
+    - haproxy

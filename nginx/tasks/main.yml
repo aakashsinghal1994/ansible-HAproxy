@@ -1,0 +1,11 @@
+---
+# tasks file for nginx
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Copy sample webpage
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html

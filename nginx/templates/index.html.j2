@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to backend!</title>
+</head>
+<body>
+<h1>This machine is {{ ansible_hostname }}</h1>
+<p>IP address of this machine is {{ ansible_eth1.ipv4.address }} <p>
+</body>
+</html>
